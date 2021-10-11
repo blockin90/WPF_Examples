@@ -1,0 +1,74 @@
+﻿<Window x:Class="WpfDataTemplateExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDataTemplateExample"
+        mc:Ignorable="d"
+        Title="Пример работы с шаблонами данных" Height="450" Width="800">
+    <Window.Resources>
+        <!--Настриваем отступы для всех докпанелей текущего окна-->
+        <Style TargetType="DockPanel">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.ColumnSpan="2" Background="AliceBlue">
+            <TextBlock DockPanel.Dock="Top" Text="Шаблон данных для выпадающего списка" FontSize="16"/>
+            <ComboBox x:Name="cbStudents" Background="Transparent">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding FirstName}"/>
+                            <TextBlock Text="{Binding LastName}"/>
+                            <Button Content="Edit" Click="Button_Click"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </DockPanel>
+        <DockPanel Grid.Row="1" Background="Bisque">
+            <TextBlock DockPanel.Dock="Top" Text="Шаблон данных для ListBox'а" FontSize="16"/>
+            <ListBox x:Name="lbStudents" Background="Transparent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding FirstName}"/>
+                            <TextBlock Text="{Binding LastName}"/>
+                            <Button Content="Edit" Click="Button_Click"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+        <DockPanel Grid.Column="1" Grid.Row="1" Background="Coral">
+            <TextBlock DockPanel.Dock="Top" Text="Шаблон данных для таблицы" FontSize="16"/>
+            <!--AutoGenerateColumns="False" для таблицы позволяет выключить автосгенерированные столбцы -->
+            <DataGrid x:Name="dgStudents" Background="Transparent" AutoGenerateColumns="False">
+                <!--для таблиц нужно определить столбцы-->
+                <DataGrid.Columns>
+                    <!--и для отображения сложного объекта, выбрать тип столбца DataGridTemplateColumn-->
+                    <DataGridTemplateColumn Header="Заголовк столбца">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding FirstName}"/>
+                                    <TextBlock Text="{Binding LastName}"/>
+                                    <Button Content="Edit" Click="Button_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Grid>
+</Window>

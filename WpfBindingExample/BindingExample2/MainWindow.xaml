@@ -1,0 +1,47 @@
+﻿<Window x:Class="BindingExample2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BindingExample2"
+        mc:Ignorable="d"
+        Title="Вывод данных с использованием биндинга 2" Height="450" Width="800"  MinWidth="300">
+    <Grid x:Name = "gridUserInfo">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Имя" Grid.Column="0" Grid.Row="0"/>
+        <TextBlock Text="Фамилия" Grid.Column="0" Grid.Row="1"/>
+        <TextBlock Text="Дата рождения" Grid.Column="0" Grid.Row="2"/>
+        <TextBox Text = "{Binding Path=FirstName}" Grid.Column="1" Grid.Row="0"/>
+        <TextBox Text = "{Binding Path=LastName}" Grid.Column="1" Grid.Row="1"/>
+        <TextBox Text = "{Binding Path=BirthDay, StringFormat=dd.MM.yyyy}" Grid.Column="1" Grid.Row="2"/>
+
+        <DataGrid ItemsSource = "{Binding Path=Papers}"  AutoGenerateColumns="False" IsReadOnly="True"
+                  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="5">
+            <!--показываем только краткие сведения по публикациям - названии и дату, остальные 
+            сведения после нажатия кнопки info-->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
+                <DataGridTextColumn Header="Дата публикации" Binding="{Binding PublicDate, StringFormat=dd.MM.yy}" Width="120"/>
+                <!--столбца для вывода кнопки нет, поэтому делаем шаблонный столбец-->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Show info" Click="ShowInfo"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
+  

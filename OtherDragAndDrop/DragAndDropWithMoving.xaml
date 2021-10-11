@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfApp3.DragAndDropWithMoving"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp3"
+        mc:Ignorable="d"
+        Title="DragAndDropWithMoving">
+    <Window.Resources>
+        <Style TargetType="Image">
+            <Setter Property="Width" Value="100"/>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <WrapPanel x:Name="wrapPanel" DockPanel.Dock="Top" Height="100" >
+            <Image Source="Images/Jellyfish.jpg" MouseMove="Image_MouseMove" Margin="10"/>
+            <Image Source="Images/Penguins.jpg" MouseMove="Image_MouseMove" Margin="10"/>
+            <Image Source="Images/Koala.jpg" MouseMove="Image_MouseMove" Margin="10"/>
+            <Image Source="Images/Hydrangeas.jpg" MouseMove="Image_MouseMove" Margin="10"/>
+        </WrapPanel>
+        <Canvas x:Name="canvas" Background="White" Grid.Column="1" AllowDrop="True" Drop="Canvas_Drop">
+
+        </Canvas>
+    </DockPanel>
+</Window>

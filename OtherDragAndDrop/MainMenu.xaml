@@ -1,0 +1,26 @@
+﻿<Window x:Class="WpfApp3.MainMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp3"
+        mc:Ignorable="d"
+        Title="MainMenu" Width="300">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button x:Name="btnDragAndDrop" Content="Drag and drop" Click="btnDragAndDrop_Click"/>
+        <Button x:Name="btnImgMoving" Content="Image move by mouse" Click="btnImgMoving_Click"/>
+        <Button x:Name="btnDragDropMoving" Content="Drag and drop + Moving"  Click="btnDragDropMoving_Click"/>
+        <Button x:Name="btnImageResizing" Content="Image resizing 1" Click="btnImageResizing_Click"/>
+        <Button IsEnabled="False" x:Name="btnImageResizing1" Content="Image resizing 2" Click="btnImageResizing_Click"/>
+        <Button IsEnabled="False" x:Name="btnImageResizing2" Content="Image resizing 3" Click="btnImageResizing_Click"/>
+
+        <Button IsEnabled="False" Content="Image resizing with borders"/>
+        <Button IsEnabled="False" Content="Drag and drop + Resizing + Moving"/>
+    </StackPanel>
+</Window>

@@ -1,0 +1,51 @@
+﻿<Window x:Class="EmployeePhoto.Forms.EmployeesList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="600"
+        Loaded="Window_Loaded"
+        >
+    <!--Выше  ^ прописали обработчик события Loaded, в котором будем загружать таблицу БД-->
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" >
+        </StackPanel>
+        <!--делаем таблицу только для чтения(IsReadOnly), выключаем автосгенерированные столбцы(AutoGenerateColumns)-->
+        <DataGrid x:Name="dgEmpl" IsSynchronizedWithCurrentItem="True" Grid.ColumnSpan="1" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding FullName}" Header="Имя" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Position.Name}" Header="Должность"/>
+                <!--т.к. стандартной колонки для вывод изображений у DataGrid'а нет
+                определяем шаблонную, в которую помещаем элемент Image-->
+                <DataGridTemplateColumn Header="Фотография" Width=".5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <!--Связываем Source(источник данных) для Image со свойство PhotoPath
+                            которое даст полный путь к файлу-->
+                            <Image Source="{Binding PhotoPath}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.ColumnSpan="1" Grid.Column="1">
+            <!--делаем кнопки неактивными до тех пор пока не инициализирована БД-->
+            <Button x:Name="btnCreate" IsEnabled="False" Content="Создать" Click="Create_Click"/>
+            <Button x:Name="btnEdit" IsEnabled="False" Content="Редактировать" Click="Edit_Click"/>
+        </StackPanel>
+        <!--Статус бар для отображения служебных сообщений-->
+        <StatusBar Grid.Row="1">
+            <TextBlock x:Name="tbStatusMessage"/>
+        </StatusBar>
+    </Grid>
+</Window>

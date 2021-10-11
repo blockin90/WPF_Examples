@@ -1,0 +1,27 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollectionViewsExample"
+        xmlns:Model="clr-namespace:CollectionViewsExample.Model" 
+        x:Class="CollectionViewsExample.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="295" Width="600" Loaded="Window_Loaded">
+    <Grid>
+        <DataGrid x:Name="studentDataGrid" AutoGenerateColumns="False" Margin="46,17,146,48" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="groupColumn" Binding="{Binding Group.Name}" Header="Group" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="lastNameColumn" Binding="{Binding LastName}" Header="Last Name" Width="*"/>
+                <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding FirstName}" Header="Имя" Width="*"/>
+                <DataGridTemplateColumn x:Name="birthDateColumn" Header="Birth Date" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding BirthDate, StringFormat=dd.MM.yy}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

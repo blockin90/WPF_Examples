@@ -1,0 +1,31 @@
+﻿<Window x:Class="BindingExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BindingExample"
+        mc:Ignorable="d"
+        Title="Вывод данных с использованием биндинга" Height="450" Width="800"  MinWidth="300">
+    <Grid x:Name = "gridUserInfo">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Имя" Grid.Column="0" Grid.Row="0"/>
+        <TextBlock Text="Фамилия" Grid.Column="0" Grid.Row="1"/>
+        <TextBlock Text="Дата рождения" Grid.Column="0" Grid.Row="2"/>
+        <TextBox Text = "{Binding Path=FirstName}" Grid.Column="1" Grid.Row="0"/>
+        <TextBox Text = "{Binding Path=LastName}" Grid.Column="1" Grid.Row="1"/>
+        <TextBox Text = "{Binding Path=BirthDay, StringFormat=dd.MM.yyyy}" Grid.Column="1" Grid.Row="2"/>
+        <Button Content="Прочитать данные с формы" Grid.Row="3" Grid.ColumnSpan="2" Click="Button_Click"/>
+        <ListBox ItemsSource = "{Binding Path=Papers}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="5"/>
+    </Grid>
+</Window>
+    

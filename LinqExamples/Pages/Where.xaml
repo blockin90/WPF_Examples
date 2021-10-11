@@ -1,0 +1,103 @@
+﻿<Window x:Class="LinqExamples.Pages.Where"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LinqExamples.Pages"
+        mc:Ignorable="d"
+        Title="Where" Height="450" Width="800">
+    <TabControl>
+        <TabItem Header="Where">
+            <DockPanel>
+                <Grid DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Группа"/>
+                    <ComboBox x:Name="cbGroups" DisplayMemberPath="Name" Grid.Column="1" SelectionChanged="whereFilter1"/>
+                    <TextBlock Text="Поиск по фамилии" Grid.Row="1"/>
+                    <TextBox x:Name="tbFilter" Grid.Row="1" Grid.Column="2" TextChanged="whereFilter1"/>
+                </Grid>
+                <DockPanel>
+                    <ListBox x:Name="lstStudents" SelectedItem="{Binding SelectedStudent}" ItemsSource="{Binding Students}" DisplayMemberPath="FIO" Width="200" DockPanel.Dock="Left"/>
+                    <Grid DataContext="{Binding ElementName=lstStudents, Path=SelectedItem}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Фамилия"/>
+                        <TextBlock Text="Имя" Grid.Row="1"/>
+                        <TextBlock Text="Дата рождения" Grid.Row="2"/>
+                        <TextBox Text="{Binding LastName}" Grid.Column="1"/>
+
+                        <TextBox Text="{Binding FirstName}" Grid.Row="1" Grid.Column="1"/>
+                        <TextBox Text="{Binding BirthDate, StringFormat=dd MMMM yyyy, ConverterCulture=Ru-ru}" Grid.Row="2" Grid.Column="1"/>
+                    </Grid>
+                </DockPanel>
+            </DockPanel>
+        </TabItem>
+        <TabItem Header="Where 2">
+            <DockPanel>
+                <Grid DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Группа"/>
+                    <ComboBox x:Name="cbGroups2" DisplayMemberPath="Name" Grid.Column="1" SelectionChanged="whereFilter2"/>
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Поиск по фамилии" />
+                        <TextBox x:Name="tbFilter2" Grid.Column="1" TextChanged="whereFilter2"/>
+                        <TextBlock Text="Успеваемость" Grid.Column="2"/>
+                        <ComboBox x:Name="cbAssesmentFilter" Grid.Column="3" SelectionChanged="whereFilter2"/>
+                    </Grid>
+                   
+                   
+                </Grid>
+                <DockPanel>
+                    <ListBox x:Name="lstStudents2" SelectedItem="{Binding SelectedStudent}" ItemsSource="{Binding Students}" DisplayMemberPath="FIO" Width="200" DockPanel.Dock="Left"/>
+                    <Grid DataContext="{Binding ElementName=lstStudents2, Path=SelectedItem}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Фамилия"/>
+                        <TextBlock Text="Имя" Grid.Row="1"/>
+                        <TextBlock Text="Дата рождения" Grid.Row="2"/>
+                        <TextBox Text="{Binding LastName}" Grid.Column="1"/>
+
+                        <TextBox Text="{Binding FirstName}" Grid.Row="1" Grid.Column="1"/>
+                        <TextBox Text="{Binding BirthDate, StringFormat=dd MMMM yyyy, ConverterCulture=Ru-ru}" Grid.Row="2" Grid.Column="1"/>
+                    </Grid>
+                </DockPanel>
+            </DockPanel>
+        </TabItem>
+    </TabControl>
+</Window>

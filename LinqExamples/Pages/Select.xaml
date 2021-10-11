@@ -1,0 +1,33 @@
+﻿<Window x:Class="LinqExamples.Pages.Select"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LinqExamples.Pages"
+        mc:Ignorable="d"
+        Title="Select" Height="450" Width="800">
+
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <TextBlock Text="Select: Выбрать все фамилии, имена, успеваемость студентов"/>
+            <Button Content="click!" Click="select1_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <TextBlock Text="Select: Выбрать все фамилии, имена, успеваемость студентов и сохранить в файл"/>
+            <Button Content="click!" Click="select1ToFile_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <TextBlock Text="SelectMany: Выбрать результаты всех экзаменов"/>
+            <Button Content="click!" Click="selectMany_Click"/>
+        </StackPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Выбрано записей "/>
+                    <TextBlock x:Name="tbRecordsCount"/>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+        <DataGrid x:Name="dgSelect1" IsReadOnly="True"/>
+    </DockPanel>
+</Window>

@@ -1,0 +1,74 @@
+﻿<Window x:Class="WpfKeyBindings.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfKeyBindings"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <!--По умолчанию WPF располагает некоторым набором команд с предопределеными горячими клавишами,
+    такими как Создание нового файла - Ctrl-N, Открытие - Ctrl-O и т.д.
+    В случае, если каких то команд не существует, их можно доопределить.
+    Для этого необходимо создать объект типа RoutedUICommand с указанием имени, 
+    по которому к нему можно обратиться. Создать его можно в ресурсах окна Window.Resources 
+    или всего приложения - внутри файла App.xaml в разделе App.Resources. Пример показан ниже:-->
+    <Window.Resources>
+        <!--команда на выход из приложения-->
+        <RoutedUICommand x:Key="Exit"/>
+        <!--команда вызова справки-->
+        <RoutedUICommand x:Key="Help"/>
+    </Window.Resources>
+    <!--когда команда создана, ее можно связать с некоторым сочетанием клавиш. Пример показан ниже. 
+    Необходимо указать для какой команды создается привязка клавиш в разделе Command;
+    какие служебные клавиши должны быть использованы (Ctrl,Alt,...), здесь можно использовать сочетания, например,
+    написать Ctrl+Alt; а также с какой клавишей будет связана команда. В примере ниже команда Exit будет
+    вызываться при одновременном нажатии Ctrl E. Избегайте назначения тех же клавиш, что используют команды по умолчанию-->
+    <Window.InputBindings>
+        <KeyBinding Command="{StaticResource Exit}" Modifiers="Ctrl" Key="E"/>
+        <!--вместо задания полей Modifiers и Key можно обойтись одним. Ниже показано, как привязать вызов 
+        справки к сочетанию Ctrl+F1-->
+        <KeyBinding Command="{StaticResource Help}" Gesture="Ctrl+F1"/>
+    </Window.InputBindings>
+    <!--Независимо от того, стандартные вы используете команды или определенные вами же, необходимо 
+    определить действия, производимые каждой командой, т.к. в зависимости от окна, состояния приложения
+    на одно и то же сочетание клавиш могут потребоваться разные обработчики-->
+    <!--ниже определяется обработка команд этого окна, стандартные команды, такие как New, Save, Open, Cut,Paste и т.п.  
+    автоматически связываются со стандартными клавишами, т.е. определив обработку команды New здесь, получаем 
+    обработчик всех нажатий Ctrl+N на форме-->
+    <Window.CommandBindings>
+        <CommandBinding Command="New" Executed="NewFileCommand"/>
+        <CommandBinding Command="{StaticResource Exit}" Executed="ExitExecuted"/>
+        <CommandBinding Command="{StaticResource Help}" Executed="HelpExecuted"/>
+    </Window.CommandBindings>
+    
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <!--Нажатие сочетаний клавиш на форме будет производить необходимые действия, однако, 
+                необходимо назначить те же обработчики и для обычного меню. Т.е. нажатие мышкой по File->New 
+                должно производить те же действия, что и нажатие Ctrl+N. Чтобы избежать дублирования кода, 
+                привязываемся к тем же командам, что описаны выше в разделе CommandBindings -->
+                <MenuItem Header="New File" Command="New"/>
+                <Separator/>
+                <!--InputGestureText - подсказка горячей клавиши для пользователя справа от пункта меню-->
+                <!--без этого свойства горячая клавиша будет работать, но пользователь может об этом не узнать
+                см., например, пункт меню "Справка", который может быть вызван по Ctrl+F1, 
+                но сам пункт меню без подсказок-->
+                <MenuItem Header="Exit" Command="{StaticResource Exit}" InputGestureText="Ctrl+E"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="Справка" Command="{StaticResource Help}"/>
+                <!--наряду с командами можно использовать и обычные обработчики событий, например клика мышкой по пункту меню:-->
+                <MenuItem Header="About" Click="About_Click"/>
+            </MenuItem>
+        </Menu>
+        <ToolBar DockPanel.Dock="Top">
+            <!--привязка к пунктам меню, кнопкам и т.п. осуществляется не через события, а через команды-->
+            <Button Command="New">
+                <!--в качестве содержимого кнопки определяем картинку-->
+                <Image Source="/images/NewFile_16x.png" Height="16"/>
+            </Button>
+        </ToolBar>
+        <TextBox Margin="5"/>
+    </DockPanel>
+</Window>

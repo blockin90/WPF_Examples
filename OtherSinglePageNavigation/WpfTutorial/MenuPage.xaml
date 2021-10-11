@@ -1,0 +1,21 @@
+﻿<Page x:Class="WpfTutorial.MenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfTutorial"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="MenuPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Content="Page1" Grid.Row="0" Margin="15" Click="Button_Click"/>
+        <Button Content="Page2" Grid.Row="1" Margin="15" Click="Button_Click_1"/>
+        <Button Content="Page3" Grid.Row="2" Margin="15" Click="Button_Click_2"/>
+    </Grid>
+</Page>
