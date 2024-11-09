@@ -10,9 +10,12 @@
     <Window.Resources>
         <local:DecimalConverter x:Key="myDecimalConverter" />
     </Window.Resources>
-    <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="144,217,0,0" VerticalAlignment="Top" Width="191" Click="Button_Click"/>
-        <TextBox Text="{Binding Path=Price, Converter= {StaticResource myDecimalConverter}}" HorizontalAlignment="Left" Margin="144,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Height="20"/>
-
-    </Grid>
+    <WrapPanel>
+        <GroupBox Header="Decimal Converter">
+            <StackPanel Orientation="Vertical">
+                <TextBox Text="{Binding Path=Price, Converter= {StaticResource myDecimalConverter}}"/>
+                <Button Content="Button" Click="Button_Click"/>
+            </StackPanel>
+        </GroupBox>
+    </WrapPanel>
 </Window>
