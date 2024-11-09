@@ -5,16 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Converter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" DataContext="{RelativeSource Mode=Self}">
 
     <Window.Resources>
         <local:DecimalConverter x:Key="myDecimalConverter" />
+        <local:RadioButtonSelectedConverter x:Key="myRadioGroupConverter" />
     </Window.Resources>
     <WrapPanel>
         <GroupBox Header="Decimal Converter">
             <StackPanel Orientation="Vertical">
                 <TextBox Text="{Binding Path=Price, Converter= {StaticResource myDecimalConverter}}"/>
-                <Button Content="Button" Click="Button_Click"/>
+                <Button Content="Show Decimal" Click="Button_Click"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="RadioButton Converter">
+            <StackPanel Orientation="Vertical">
+                <RadioButton Content="Опция 1" GroupName="OptionsGroup" IsChecked="{Binding 
+                    Path=IsOptionSelected,
+                    Converter={StaticResource myRadioGroupConverter},ConverterParameter=true}"/>
+                <RadioButton Content="Опция 2" GroupName="OptionsGroup" IsChecked="{Binding 
+                    Path=IsOptionSelected,
+                    Converter={StaticResource myRadioGroupConverter},ConverterParameter=false}"/>
+                <Button Content="Show Boolean" Click="ShowBoolean_Click"/>
             </StackPanel>
         </GroupBox>
     </WrapPanel>

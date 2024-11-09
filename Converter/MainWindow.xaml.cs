@@ -20,7 +20,14 @@ namespace Converter
     /// </summary>
     public partial class MainWindow : Window
     {
-        public decimal Price { get; set; } 
+        public decimal Price { get; set; }
+
+        public bool IsOptionSelected 
+        {
+            get; 
+            set; 
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +37,11 @@ namespace Converter
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(Price.ToString());
+        }
+
+        private void ShowBoolean_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(IsOptionSelected.ToString());
         }
     }
 }
