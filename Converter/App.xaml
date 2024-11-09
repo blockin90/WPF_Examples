@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:Converter"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="Margin" Value="5"/>
+        </Style>         
     </Application.Resources>
 </Application>
